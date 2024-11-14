@@ -31,6 +31,7 @@ function Album() {
     setAlbums(albums.filter(album => album.id !== id));
   };
 
+
   // Gestion de la modification d'un album
   const handleEditAlbum = (id) => {
     const album = albums.find(album => album.id === id);
