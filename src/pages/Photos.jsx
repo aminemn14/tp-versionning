@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function Photos() {
@@ -64,14 +64,16 @@ function Photos() {
             key={photo.id}
             className="flex flex-col items-center bg-white rounded-lg shadow-lg p-4"
           >
-            <img
-              src={photo.url}
-              alt={photo.name}
-              className="w-full h-48 object-cover rounded-lg mb-4"
-            />
-            <span className="text-xl font-medium text-gray-700">
-              {photo.name}
-            </span>
+            <Link to={`/album/${id}/photos/${photo.id}`}>
+              <img
+                src={photo.url}
+                alt={photo.name}
+                className="w-full h-48 object-cover rounded-lg mb-4"
+              />
+              <span className="text-xl font-medium text-gray-700">
+                {photo.name}
+              </span>
+            </Link>
           </div>
         ))}
       </div>
