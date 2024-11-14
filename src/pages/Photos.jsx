@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-function PhotoDetails() {
-  const { id, photoId } = useParams();
-  const [photo, setPhoto] = useState(null);
-  const [comments, setComments] = useState([]);
+function Photos() {
+  const { id } = useParams();
+  const [album, setAlbum] = useState(null);
 
+  // Simuler les données d'album (à remplacer par une vraie source de données)
   const albums = [
     {
       id: 1,
@@ -48,65 +48,35 @@ function PhotoDetails() {
     },
   ];
 
-  const fakeComments = [
-    {
-      id: 1,
-      user: "Alice",
-      comment: "Superbe photo, ça donne envie d'y être !",
-    },
-    { id: 2, user: "Bob", comment: "Magnifique couleur de l'eau !" },
-    { id: 3, user: "Charlie", comment: "Quel beau paysage !" },
-  ];
-
   useEffect(() => {
-    const selectedAlbum = albums.find((album) => album.id == id);
-    if (selectedAlbum) {
-      const selectedPhoto = selectedAlbum.photos.find(
-        (photo) => photo.id == photoId
-      );
-      setPhoto(selectedPhoto);
-      setComments(fakeComments);
-    }
-  }, [id, photoId]);
+    const selectedAlbum = albums.find((album) => album.id === parseInt(id));
+    setAlbum(selectedAlbum);
+  }, [id]);
 
-  if (!photo) return <div>Photo non trouvée</div>;
+  if (!album) return <div>Album non trouvé</div>;
 
   return (
     <div className="min-h-screen p-6 bg-gray-100">
-      <h1 className="text-3xl font-bold text-gray-800 mb-4">{photo.name}</h1>
-      <div className="flex justify-center mb-8">
-        <img
-          src={photo.url}
-          alt={photo.name}
-          className="w-full max-w-lg object-cover rounded-lg"
-        />
+      <h1 className="text-3xl font-bold text-gray-800 mb-4">{album.name}</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {album.photos.map((photo) => (
+          <div
+            key={photo.id}
+            className="flex flex-col items-center bg-white rounded-lg shadow-lg p-4"
+          >
+            <img
+              src={photo.url}
+              alt={photo.name}
+              className="w-full h-48 object-cover rounded-lg mb-4"
+            />
+            <span className="text-xl font-medium text-gray-700">
+              {photo.name}
+            </span>
+          </div>
+        ))}
       </div>
-
-      <h2 className="text-2xl font-semibold text-gray-700 mb-4">
-        Commentaires
-      </h2>
-      <table className="min-w-full bg-white shadow-md rounded-lg">
-        <thead>
-          <tr>
-            <th className="py-3 px-6 bg-gray-200 font-semibold text-gray-600">
-              Utilisateur
-            </th>
-            <th className="py-3 px-6 bg-gray-200 font-semibold text-gray-600">
-              Commentaire
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {comments.map((comment) => (
-            <tr key={comment.id} className="border-t">
-              <td className="py-4 px-6 text-gray-700">{comment.user}</td>
-              <td className="py-4 px-6 text-gray-700">{comment.comment}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
     </div>
   );
 }
 
-export default PhotoDetails;
+export default Photos;
