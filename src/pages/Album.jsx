@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   PencilSquareIcon,
   TrashIcon,
@@ -12,16 +13,43 @@ function Album() {
       id: 1,
       name: "Vacances à la plage",
       image: "/src/assets/images/album-plage.jpg",
+      photos: [
+        { id: 1, name: "Plage 1", url: "/src/assets/images/plage1.jpg" },
+        { id: 2, name: "Plage 2", url: "/src/assets/images/plage2.jpg" },
+        { id: 3, name: "Plage 3", url: "/src/assets/images/plage3.jpg" },
+      ],
     },
     {
       id: 2,
       name: "Noël en famille",
       image: "/src/assets/images/album-noel.jpg",
+      photos: [
+        { id: 1, name: "Noël 1", url: "/src/assets/images/noel1.jpg" },
+        { id: 2, name: "Noël 2", url: "/src/assets/images/noel2.jpg" },
+        { id: 3, name: "Noël 3", url: "/src/assets/images/noel3.jpg" },
+      ],
     },
     {
       id: 3,
       name: "Anniversaire surprise",
       image: "/src/assets/images/album-anniversaire.jpg",
+      photos: [
+        {
+          id: 1,
+          name: "Anniversaire 1",
+          url: "/src/assets/images/anniversaire1.jpg",
+        },
+        {
+          id: 2,
+          name: "Anniversaire 2",
+          url: "/src/assets/images/anniversaire2.jpg",
+        },
+        {
+          id: 3,
+          name: "Anniversaire 3",
+          url: "/src/assets/images/anniversaire3.jpg",
+        },
+      ],
     },
   ]);
 
@@ -81,7 +109,7 @@ function Album() {
         className="fixed pl-4 top-4 right-4 flex items-center bg-green-600 text-white font-semibold rounded-full p-2 hover:bg-green-700 transition-all duration-300 ease-in-out"
       >
         Ajouter un album
-        <PlusCircleIcon className=" ml-2 h-6 w-6" />
+        <PlusCircleIcon className="ml-2 h-6 w-6" />
       </button>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -90,11 +118,13 @@ function Album() {
             key={album.id}
             className="relative flex flex-col items-center bg-white rounded-lg shadow-lg p-4"
           >
-            <img
-              src={album.image}
-              alt={album.name}
-              className="w-full h-48 object-cover rounded-lg my-8"
-            />
+            <Link to={`/album/${album.id}/photos`}>
+              <img
+                src={album.image}
+                alt={album.name}
+                className="w-full h-48 object-cover rounded-lg my-8"
+              />
+            </Link>
             <span className="text-xl font-medium text-gray-700 mb-4">
               {album.name}
             </span>
