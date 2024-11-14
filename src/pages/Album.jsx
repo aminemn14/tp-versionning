@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
+import {
+  PencilSquareIcon,
+  TrashIcon,
+  PlusCircleIcon,
+} from "@heroicons/react/24/outline";
 import ModalManage from "../components/ModalManage";
 
 function Album() {
@@ -55,9 +59,10 @@ function Album() {
 
       <button
         onClick={() => setIsAddVisible(true)}
-        className="px-4 py-2 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 mb-6"
+        className="fixed pl-4 top-4 right-4 flex items-center bg-green-600 text-white font-semibold rounded-full p-2 hover:bg-green-700 transition-all duration-300 ease-in-out"
       >
         Ajouter un album
+        <PlusCircleIcon className=" ml-2 h-6 w-6" />
       </button>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
