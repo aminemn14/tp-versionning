@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect } from "react";
+import PropTypes from "prop-types";
 
 const ModalManage = ({
   isOpen,
@@ -64,6 +65,14 @@ const ModalManage = ({
       </motion.div>
     </div>
   );
+};
+ModalManage.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.node,
+  showButtons: PropTypes.bool,
+  onConfirm: PropTypes.func,
+  onCancel: PropTypes.func,
 };
 
 export default ModalManage;
