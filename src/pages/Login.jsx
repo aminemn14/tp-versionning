@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function Login() {
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+
+  const isFormFilled = name !== "" && password !== "";
+
   return (
     <>
       <section className="flex items-center justify-center min-h-screen bg-gradient-to-br from-primary to-secondary">
@@ -17,16 +23,28 @@ function Login() {
               </div>
               <input
                 type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 className="w-full h-12 text-gray-900 placeholder:text-gray-400 text-lg font-normal leading-7 rounded-full border-gray-300 border shadow-sm focus:outline-none px-4 mb-6"
                 placeholder="Nom"
               />
               <input
-                type="text"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="w-full h-12 text-gray-900 placeholder:text-gray-400 text-lg font-normal leading-7 rounded-full border-gray-300 border shadow-sm focus:outline-none px-4 mb-1"
                 placeholder="Mot de passe"
               />
-              <Link to="/album">
-                <button className="w-full mt-6 h-12 text-white text-center text-base font-semibold leading-6 rounded-full hover:bg-secondary transition-all duration-300 bg-accent shadow-sm mb-11">
+              <Link to={isFormFilled ? "/album" : "#"}>
+                <button
+                  type="button"
+                  disabled={!isFormFilled}
+                  className={`w-full mt-6 h-12 text-white text-center text-base font-semibold leading-6 rounded-full transition-all duration-300 bg-accent shadow-sm mb-11 ${
+                    isFormFilled
+                      ? "hover:bg-secondary"
+                      : "bg-gray-300 cursor-not-allowed"
+                  }`}
+                >
                   Se connecter
                 </button>
               </Link>
