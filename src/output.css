@@ -599,6 +599,16 @@ video {
   margin-right: auto;
 }
 
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.my-8 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 .mb-1 {
   margin-bottom: 0.25rem;
 }
@@ -653,6 +663,10 @@ video {
 
 .h-6 {
   height: 1.5rem;
+}
+
+.h-48 {
+  height: 12rem;
 }
 
 .min-h-screen {

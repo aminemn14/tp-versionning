@@ -8,9 +8,21 @@ import ModalManage from "../components/ModalManage";
 
 function Album() {
   const [albums, setAlbums] = useState([
-    { id: 1, name: "Vacances à la plage" },
-    { id: 2, name: "Noël en famille" },
-    { id: 3, name: "Anniversaire surprise" },
+    {
+      id: 1,
+      name: "Vacances à la plage",
+      image: "/src/assets/images/album-plage.jpg",
+    },
+    {
+      id: 2,
+      name: "Noël en famille",
+      image: "/src/assets/images/album-noel.jpg",
+    },
+    {
+      id: 3,
+      name: "Anniversaire surprise",
+      image: "/src/assets/images/album-anniversaire.jpg",
+    },
   ]);
 
   const [newAlbumName, setNewAlbumName] = useState("");
@@ -21,7 +33,14 @@ function Album() {
 
   const handleAddAlbum = () => {
     if (newAlbumName.trim() === "") return;
-    setAlbums([...albums, { id: Date.now(), name: newAlbumName }]);
+    setAlbums([
+      ...albums,
+      {
+        id: Date.now(),
+        name: newAlbumName,
+        image: "../assets/images/default.jpg",
+      },
+    ]);
     setNewAlbumName("");
     setIsAddVisible(false);
   };
@@ -71,6 +90,11 @@ function Album() {
             key={album.id}
             className="relative flex flex-col items-center bg-white rounded-lg shadow-lg p-4"
           >
+            <img
+              src={album.image}
+              alt={album.name}
+              className="w-full h-48 object-cover rounded-lg my-8"
+            />
             <span className="text-xl font-medium text-gray-700 mb-4">
               {album.name}
             </span>
