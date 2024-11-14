@@ -10,7 +10,7 @@ function AppRoutes() {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/album/:id/photos" element={<Photos />} />
-      <Route path="/photos/:id" element={<PhotoDetails />} />
+      <Route path="/album/:id/photos/:id" element={<PhotoDetails />} />
       <Route path="/album" element={<Album />} />
       <Route path="*" element={<Login />} />
     </Routes>
